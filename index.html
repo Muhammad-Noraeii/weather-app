@@ -1,0 +1,158 @@
+<!--
+Mojo Weather | A perfect weather app
+This app Shows weather of everycity in world!
+Open-Source
+Under MojoLicense
+Se LICENSE File for detail
+
+-------
+
+Author : Muhammad Noraeii & MojoX
+Email : Muhammad.Noraeii@gmail.com
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get real-time weather information for any location with this fast, responsive weather app">
+    <meta name="theme-color" content="#0078d7">
+    <title>Weather App</title>
+    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://api.openweathermap.org" crossorigin>
+    <link rel="dns-prefetch" href="https://api.openweathermap.org">
+    
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+          media="print" onload="this.media='all'; this.onload=null;">
+    
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </noscript>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Weather Forecast</h1>
+            <p>Get real-time weather information for any location</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Enter city name or location..." id="city-input" autocomplete="off">
+            <button class="search-button" id="search-button">
+                <i class="fas fa-search"></i> <span>Search Weather</span>
+            </button>
+            <button class="location-button" id="location-button" title="Use your current location" aria-label="Use your current location">
+                <i class="fas fa-location-crosshairs"></i>
+            </button>
+        </div>
+
+        <div class="content">
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Fetching weather data...</p>
+            </div>
+
+            <div class="error-message" id="error-message">
+                <i class="fas fa-exclamation-circle"></i> <span id="error-text">City not found. Please check the spelling or try another location.</span>
+            </div>
+
+            <div class="weather-container" id="weather-container">
+                <div class="unit-toggle">
+                    <button class="unit-btn active" id="celsius-btn" aria-pressed="true">°C</button>
+                    <button class="unit-btn" id="fahrenheit-btn" aria-pressed="false">°F</button>
+                </div>
+                
+                <div class="weather-display">
+                    <h2 class="city-name" id="city-name"><i class="fas fa-map-marker-alt location-icon"></i>London, GB</h2>
+                    <div class="current-date" id="current-date">Monday, March 30, 2025</div>
+                    <div class="weather-icon" id="weather-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <div class="temperature" id="temperature">21<span class="temp-unit">°C</span></div>
+                    <div class="description" id="description">Partly cloudy</div>
+                    <div class="temp-range">
+                        <div class="temp-max"><i class="fas fa-arrow-up"></i> <span id="temp-max">24°C</span></div>
+                        <div class="temp-min"><i class="fas fa-arrow-down"></i> <span id="temp-min">18°C</span></div>
+                    </div>
+                </div>
+
+                <div class="weather-alert" id="weather-alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span id="alert-text">Weather alert information will appear here</span>
+                </div>
+
+                <div class="details">
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <div class="detail-title">Feels Like</div>
+                        <div class="detail-value" id="feels-like">23°C</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-droplet"></i>
+                        </div>
+                        <div class="detail-title">Humidity</div>
+                        <div class="detail-value" id="humidity">65%</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="detail-title">Wind Speed</div>
+                        <div class="detail-value" id="wind-speed">10 km/h</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-gauge-high"></i>
+                        </div>
+                        <div class="detail-title">Pressure</div>
+                        <div class="detail-value" id="pressure">1013 hPa</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-lungs"></i>
+                        </div>
+                        <div class="detail-title">Air Quality</div>
+                        <div class="detail-value" id="air-quality">Good</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="detail-title">Visibility</div>
+                        <div class="detail-value" id="visibility">10 km</div>
+                    </div>
+                </div>
+
+                <div class="hourly-forecast">
+                    <h3 class="section-title">Hourly Forecast</h3>
+                    <div class="hourly-container" id="hourly-container">
+                    </div>
+                </div>
+
+                <div class="forecast">
+                    <h3 class="section-title">5-Day Forecast</h3>
+                    <div class="forecast-container" id="forecast-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Developed By Muhammad Noraeii | Real-time weather data powered by OpenWeatherMap API</p>
+            <div class="credits">CopyRight &copy; | MojoX 2020 - <span id="current-year">2025</span></div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
