@@ -123,10 +123,3 @@ Encounter a bug or have a question? Feel free to:
 Happy forecasting! 🌞🌧️❄️
 
 ---
-
-### Notes for You:
-- Replace `Muhammad-Noraeii` with your actual GitHub username if you plan to host this on GitHub.
-- Add a screenshot or demo link if you have one available.
-- If you have a specific `LICENSE` file, ensure it’s included in the repo and linked properly.
-- Customize the "Roadmap" section based on your future plans for the app.
-
