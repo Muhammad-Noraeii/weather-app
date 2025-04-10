@@ -21,7 +21,7 @@ Whether you're a casual user checking the forecast or a developer looking to con
 
 Check out a live demo [here](https://mojo-weather.netlify.app/) or explore the screenshots below:
 
-![Mojo Weather Screenshot](scrnsht.png)
+![Mojo Weather Screenshot](scrnsht.PNG)
 
 ## Installation 🚀
 
